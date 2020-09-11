@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Try from "./Try";
 
 function getNumbers() {
@@ -73,6 +73,7 @@ class NumberBase extends Component {
                 });
             }
         }
+        this.inputRef.current.focus();
     };
 
     loop = [{ va: "li" }, { va: "lie" }, { va: "liw" }, { va: "lia" }];
@@ -83,6 +84,8 @@ class NumberBase extends Component {
         });
     };
 
+    inputRef = createRef();
+
     render() {
         return (
             <>
@@ -90,7 +93,7 @@ class NumberBase extends Component {
                 <form onSubmit={this.onSubmitForm}>
                     <input
                         maxLength={4}
-                        ref={this.onRefInput}
+                        ref={this.inputRef}
                         value={this.state.value}
                         onChange={this.onChangeInput}
                         //defaultValue={this.state.value}
