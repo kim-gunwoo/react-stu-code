@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Load React -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- Load Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+    <title>gogo</title>
+</head>
+<body>
+    <div id='root'></div>
+    <script type="text/babel">
+        class GuGuDan extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    first: Math.ceil(Math.random() * 9),
+                    two: Math.ceil(Math.random() * 9),
+                    rslt: '',
+                    inVal: ''
+                }
+            }
+
+            onChange = (e) => { 
+                this.setState( { inVal: e.target.value } ) 
+            }
+
+            onSubmit = (e) => { 
+                e.preventDefault();
+                if(parseInt(this.state.inVal) === this.state.first * this.state.two){
+                    /*this.setState( {
+                        first: Math.ceil(Math.random() * 9),
+                        two: Math.ceil(Math.random() * 9),
+                        rslt: '정답 ' + this.state.inVal,
+                        inVal: ''
+                    })*/
+                    // 기존 값을 불러올 경우 함수로 return 처리한다
+                    // setState 는 비동기 처리임
+                    this.setState((prev) => { 
+                        return {
+                            first: Math.ceil(Math.random() * 9),
+                            two: Math.ceil(Math.random() * 9),
+                            rslt: '정답 ' + prev.inVal,
+                            inVal: ''
+                        }
+                    })
+                }else {
+                    this.setState( {
+                        rslt: '땡',
+                        inVal: ''
+                    }) 
+                }
+                // setState() 할때마다 새로 랜더링함
+                this.input__.focus();
+            }
+
+            input__;
+
+            onRefInput = (c) => { this.input__ = c; }
+
+            render(){
+                return (
+                    // div 로 꼭 감싸줄 필요가 없어짐
+                    // React.Fragment 로 묶어주면 불필요한 태그를 없앨수 있음
+                    // tag 안에 class 는 쓸수 없음 className 으로 대체
+                    // for -> htmlFor 속성 2개는 주의해야함
+                    <React.Fragment>
+                    <div>
+                        <div>{this.state.first} * {this.state.two} = ? </div>
+                        <form onSubmit = {this.onSubmit} > 
+                            <input ref={ this.onRefInput }
+                                type="number" value={this.state.inVal} 
+                            onChange = {this.onChange} />
+                            <button>Number</button>
+                        </form>
+                        <div>{this.state.rslt}</div>
+                    </div>
+                    </React.Fragment>
+                );
+            }
+        }
+
+        ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+    </script>
+</body>
+</html>

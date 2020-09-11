@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Load React -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- Load Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+    <title>gogo</title>
+</head>
+<body>
+    <div id='root'></div>
+    <script type="text/babel">
+        // hooks
+        // Functional Component
+        // 랜더링시 함수 전체가 다시 실행이 된다.
+        const GuGuDan = () => {
+            // 구조분해할당
+            const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+            const [two, setTwo] = React.useState(Math.ceil(Math.random() * 9));
+            const [inVal, setInVal] = React.useState('');
+            const [rslt, setRslt] = React.useState(''); 
+            const onRefInput = React.useRef(null);
+
+            const onChange = (e) => { 
+                setInVal(e.target.value);
+            };
+
+            const onSubmit = (e) => { 
+                e.preventDefault();
+                if(parseInt(inVal) === first * two){
+                    setFirst(Math.ceil(Math.random() * 9));
+                    setTwo(Math.ceil(Math.random() * 9));
+                    setRslt('정답 ' + inVal);
+                    setInVal('');
+                }else {
+                    setRslt('땡');
+                    setInVal('');
+                }
+                onRefInput.current.focus();
+            }
+
+            return (<React.Fragment>
+                        <div>{first} * {two} = ? </div>
+                        <form onSubmit = {onSubmit} > 
+                            <input ref={ onRefInput }
+                                type="number" value={inVal} 
+                            onChange = {onChange} />
+                            <button>Number</button>
+                        </form>
+                        <div>{rslt}</div>
+                    </React.Fragment>); 
+        } 
+
+        ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+    </script>
+</body>
+</html>

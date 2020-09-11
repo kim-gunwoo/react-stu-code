@@ -1,0 +1,33 @@
+// React
+
+// npm 으로 리액트 설치,  -D 개발용 설치
+npm i react react-dom
+npm i -D webpack webpack-cli
+
+// webpack 실행 방법
+package.json > script 부분에 명령어 추가 ex) "dev": "webpack"
+terminal 프로젝트 설정 위치에서 npm run dev 
+
+npx webpack
+
+// 바벨 설정 jsx 파일을 읽기 위해선 babel 및 babel 의 jsx 설정을 해줘야함
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader 
+
+npm i -D @babel/plugin-proposal-class-properties
+
+// webpack 공식사이트
+webpack.js.org 
+
+// 자동 리로드
+npm i -D react-hot-loader
+
+npm i -D webpack-dev-server
+
+// require , import
+const {} = require({}) , import {} = from {}
+
+module.exports = {} , export default = {}
+
+// class , hooks 랜더링 관련  
+PureComponent , memo 값이 바뀌었을때만 랜더링을 진행
+shouldComponentUpdate(nextProps, nextState, nextCoutext) {} 특정조건에서 랜더링 하도록 할수있음

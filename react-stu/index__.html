@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Load React -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- Load Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- babel 을 쓰기 위해선 type 지정을 해줘야함 -->
+    <script type="text/babel">
+
+        const e = React.createElement;
+
+        class LikeButton extends React.Component {
+
+            // state 바뀔 여지가 있는 부분
+            constructor(props){
+                super(props);
+                this.state = {
+                    liked: false
+                }
+            }
+            render() {
+                // babel 이 필요함 
+                // JSX ( JS + XML )
+                return <button onClick= {() => { 
+                        this.setState({liked: true})
+                        }
+                    }>
+                    {this.state.liked === true ? 'Liked' : 'Like'}
+                    </button>
+                // null 위치에 이벤트를 추가할 수 있음
+                // 속성은 camel case 로 표기
+                //return e('button', null, 'Like'); // <button>Like<button>
+                /*
+                    return e('button', { 
+                    onClick: () => { 
+                        //alert ('');
+                        this.setState({liked: true})
+                    }
+                }, //'Like'
+                    this.state.liked === true ? 'Liked' : 'Like'
+                );
+                */
+            }
+        }
+
+        //ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+
+        ReactDOM.render(<LikeButton />, document.querySelector('#root'));
+
+    </script>
+</body>
+</html>
