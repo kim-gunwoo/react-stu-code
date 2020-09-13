@@ -31,3 +31,33 @@ module.exports = {} , export default = {}
 // class , hooks 랜더링 관련  
 PureComponent , memo 값이 바뀌었을때만 랜더링을 진행
 shouldComponentUpdate(nextProps, nextState, nextCoutext) {} 특정조건에서 랜더링 하도록 할수있음
+
+// 리액트 라이프 사이클
+/*
+클래스의 경우 constructor -> render -> ref -> componentDidMount 
+-> (setState/props 바뀔때) -> shouldComponentUpdate(return true) -> render -> componentDidUpdate 
+부모가 나를 없앨때 -> componentWillUnmount -> 소멸
+*/
+componentDidMount(){} 최초에 한번 랜더링이 성공했을경우에 한번 실행, 비동기 요청 
+componentDidUpdate() {} 컴포넌트가 리랜더링이 발생했을 경우
+componentWillUnmount() {} 컴포넌트가 제거 되기 직전, 비동기 요청 정리
+
+/*
+Hooks의 경우 
+*/
+useEffect(() => {
+        // componentDidMount, componentDidUpdate 의 역할
+
+        return () => {
+            // componentDidMount 의 역할
+
+        };
+    }, []); // [] 랜더링 요청하는 값
+
+// class , hooks  라이프 사이클
+                        useEffect (val1,    val2,   val3 ...)  // 랜더링시 요청하는 값 하나씩 또는 여러개씩 묶어서 처리
+componentDidMount       val1    val2    val3  ...  // 랜더링시 요청하는 모든 값을 한번에 컨트롤
+componentDidUpdate
+componentDidMount
+
+// class 는 row 단위로 hooks 는 col 단위로 라이프 사이클 처리 
