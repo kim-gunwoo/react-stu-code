@@ -61,3 +61,16 @@ componentDidUpdate
 componentDidMount
 
 // class 는 row 단위로 hooks 는 col 단위로 라이프 사이클 처리 
+
+
+// useRef 일반값 기억
+
+// useMemo 복잡한 함수 결과값 기억
+const 결과값을 받을 변수 = useMemo(() => { 받고자 하는 결과값 }, [지우고자 하는 값]);
+
+// useCallback 함수 자체를 기억 함수를 재생성 하지 않도록 함 
+// 자식에게 props 값으로 함수를 줄때 사용
+const 함수명 = useCallback(() => { 사용하고자 하는 내부 }, [지우고자 하는 값]);
+
+// Hooks 주의사항 
+조건문안에 넣으면 안된다 useEffect 안에서 useState 를 쓰면 안된다
