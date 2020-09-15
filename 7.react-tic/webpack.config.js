@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-    name: "react-rsp-setting",
+    name: "react-tic-setting",
     mode: "development",
     devtool: "eval",
     resolve: {

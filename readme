@@ -74,3 +74,5 @@ const 함수명 = useCallback(() => { 사용하고자 하는 내부 }, [지우�
 
 // Hooks 주의사항 
 조건문안에 넣으면 안된다 useEffect 안에서 useState 를 쓰면 안된다
+
+// useReducer
