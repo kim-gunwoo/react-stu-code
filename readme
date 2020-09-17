@@ -75,4 +75,25 @@ const 함수명 = useCallback(() => { 사용하고자 하는 내부 }, [지우�
 // Hooks 주의사항 
 조건문안에 넣으면 안된다 useEffect 안에서 useState 를 쓰면 안된다
 
-// useReducer
+// useReducer 기본구조
+import React, { useReducer } from "react";
+
+const initialState = {
+    //state,
+};
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+
+const {익스포트} = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    return;
+};
+
+export default {익스포트};
+
+// Context API 
